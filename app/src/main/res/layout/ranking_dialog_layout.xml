@@ -7,19 +7,21 @@
   <com.nicopasso.babbelkombat.customviews.BKTextView android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:id="@+id/words_textview"
-    android:textSize="30sp"
+    android:textSize="24sp"
     android:textColor="@color/colorAccent"
     android:layout_marginStart="16dp"
-    android:layout_marginTop="24dp"
+    android:layout_marginTop="16dp"
+    android:layout_marginEnd="16dp"
   />
 
   <com.nicopasso.babbelkombat.customviews.BKTextView android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:id="@+id/ranking_textview"
-    android:textSize="30sp"
+    android:textSize="24sp"
     android:textColor="@color/colorAccent"
-    android:layout_marginTop="24dp"
+    android:layout_marginTop="10dp"
     android:layout_marginStart="16dp"
+    android:layout_marginEnd="16dp"
   />
 
   <com.nicopasso.babbelkombat.customviews.BKButton android:layout_width="wrap_content"
@@ -30,7 +32,9 @@
     android:padding="8dp"
     android:textSize="24sp"
     android:id="@+id/back_homepage_btn"
-    android:layout_marginBottom="24dp"
+    android:layout_marginBottom="16dp"
+    android:layout_marginStart="16dp"
+    android:layout_marginEnd="16dp"
   />
 
 </LinearLayout>

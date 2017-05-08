@@ -186,7 +186,7 @@ class GameActivity: AppCompatActivity() {
         if (selectedWord?.textSpa == animated_textview.text) {
             mpRight?.start()
             mpRight?.setOnCompletionListener {
-                if (roundNumber >= 2) {
+                if (roundNumber >= 5) {
                     RankingDialog.show(this, game)
                 } else {
                     createGameWordsArray()
