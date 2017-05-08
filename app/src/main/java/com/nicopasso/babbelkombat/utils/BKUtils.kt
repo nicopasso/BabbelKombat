@@ -25,4 +25,7 @@ class BKUtils {
         return json
     }
 
+    fun generateRandomNumber(upper: Int, lower: Int) =
+            ((Math.random() * (upper - lower)) + lower).toInt()
+
 }

@@ -12,4 +12,5 @@ data class Word @ParcelConstructor constructor(@SerializedName("text_eng") val t
 data class Player @ParcelConstructor constructor(val id: Int, val name: String, var score: Int = 0)
 
 @Parcel
-data class Game @ParcelConstructor constructor(var players: List<Player>, var words: MutableList<Word>)
+data class Game @ParcelConstructor constructor(var players: List<Player>,
+                                               var words: MutableList<Word>)
