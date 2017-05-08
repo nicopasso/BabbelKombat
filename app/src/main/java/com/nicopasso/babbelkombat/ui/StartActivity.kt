@@ -8,7 +8,10 @@ import android.widget.TextView
 import com.nicopasso.babbelkombat.BKApplication
 import com.nicopasso.babbelkombat.R
 import com.nicopasso.babbelkombat.di.StartActivityModule
+import com.nicopasso.babbelkombat.model.Word
 import kotlinx.android.synthetic.main.activity_start.*
+import rx.android.schedulers.AndroidSchedulers
+import rx.schedulers.Schedulers
 import javax.inject.Inject
 
 fun Context.typefaceFromAssets(assetPath: String): Typeface =
@@ -29,6 +32,8 @@ class StartActivity : AppCompatActivity(), StartView {
         app.component.plus(StartActivityModule(this))
     }
 
+    val mWords = mutableListOf<Word>()
+
     companion object {
         val TITLE_FONT = "fonts/mk5style.ttf"
         val TEXT_FONT = "fonts/mk1.ttf"
@@ -46,6 +51,18 @@ class StartActivity : AppCompatActivity(), StartView {
         two_players_btn.applyFont(TEXT_FONT)
         three_players_btn.applyFont(TEXT_FONT)
         four_players_btn.applyFont(TEXT_FONT)
+
+        presenter.loadWords(this)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe {
+                    word -> mWords.add(word)
+                }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        presenter.detachView()
     }
     //endregion
 }
