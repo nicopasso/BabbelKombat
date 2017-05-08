@@ -1,6 +1,6 @@
 package com.nicopasso.babbelkombat.di
 
-import com.nicopasso.babbelkombat.StartActivity
+import com.nicopasso.babbelkombat.ui.StartActivity
 import dagger.Subcomponent
 import javax.inject.Singleton
 
