@@ -1,5 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'kotlin-android-extensions'
 
 android {
   compileSdkVersion 25
@@ -25,10 +27,23 @@ dependencies {
   androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
     exclude group: 'com.android.support', module: 'support-annotations'
   })
-  compile 'com.android.support:appcompat-v7:25.3.0'
-  compile 'com.android.support.constraint:constraint-layout:1.0.2'
   testCompile 'junit:junit:4.12'
-  compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+
+  kapt 'com.google.dagger:dagger-compiler:2.5'
+
+  compile(
+      'com.android.support:appcompat-v7:25.3.0',
+      'com.android.support.constraint:constraint-layout:1.0.2',
+      "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version",
+      'com.google.dagger:dagger:2.5',
+      'com.github.salomonbrys.kotson:kotson:2.5.0',
+      'io.reactivex:rxjava:1.1.6',
+      'io.reactivex:rxandroid:1.2.1',
+      'org.mockito:mockito-core:2.7.22'
+  )
+
+  compile 'org.parceler:parceler-api:1.1.6'
+  kapt 'org.parceler:parceler:1.1.6'
 }
 repositories {
   mavenCentral()
