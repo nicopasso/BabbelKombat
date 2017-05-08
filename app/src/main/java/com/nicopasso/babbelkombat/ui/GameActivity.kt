@@ -1,11 +1,13 @@
 package com.nicopasso.babbelkombat.ui
 
+import android.media.MediaPlayer
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.view.animation.AccelerateDecelerateInterpolator
 import android.view.animation.Animation
 import android.view.animation.TranslateAnimation
+import android.widget.Button
 import com.nicopasso.babbelkombat.R
 import com.nicopasso.babbelkombat.model.Game
 import com.nicopasso.babbelkombat.model.Player
@@ -33,6 +35,9 @@ class GameActivity: AppCompatActivity() {
     var selectedWord: Word? = null
     var roundNumber = 1
 
+    var mpRight: MediaPlayer? = null
+    var mpWrong: MediaPlayer? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game)
@@ -43,6 +48,9 @@ class GameActivity: AppCompatActivity() {
         }
 
         game.players = players
+
+        mpRight = MediaPlayer.create(this, R.raw.cheer)
+        mpWrong = MediaPlayer.create(this, R.raw.cwdboo)
 
         createGameWordsArray()
         initUI()
@@ -157,6 +165,39 @@ class GameActivity: AppCompatActivity() {
         })
 
         animated_textview.startAnimation(animation)
+
+        player_one.arcade_btn.setOnClickListener {
+            v -> playerButtonAction((v as Button), animation)
+        }
+        player_two.arcade_btn.setOnClickListener {
+            v -> playerButtonAction((v as Button), animation)
+        }
+        player_three.arcade_btn.setOnClickListener {
+            v -> playerButtonAction((v as Button), animation)
+        }
+        player_four.arcade_btn.setOnClickListener {
+            v -> playerButtonAction((v as Button), animation)
+        }
+    }
+
+    fun playerButtonAction(button: Button, animation: TranslateAnimation) {
+
+        if (selectedWord?.textSpa == animated_textview.text) {
+            mpRight?.start()
+            mpRight?.setOnCompletionListener {
+                if (roundNumber >= 5) {
+                    //TODO: show Ranking
+                } else {
+                    createGameWordsArray()
+                    //TODO: update UI
+                }
+            }
+            animation.cancel()
+
+            //TODO: update player score
+        } else {
+            mpWrong?.start()
+        }
 
     }
 
