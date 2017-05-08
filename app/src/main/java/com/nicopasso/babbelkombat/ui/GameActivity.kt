@@ -133,7 +133,7 @@ class GameActivity: AppCompatActivity() {
 
         var wordIndex = 0
 
-        animated_textview.text = gameWords[wordIndex].textEng
+        animated_textview.text = gameWords[wordIndex].textSpa
 
         val animation = TranslateAnimation(Animation.RELATIVE_TO_PARENT, -1.5f,
                 Animation.RELATIVE_TO_PARENT, 1f,
@@ -153,7 +153,8 @@ class GameActivity: AppCompatActivity() {
             override fun onAnimationRepeat(animation: Animation?) {
                 wordIndex++
                 if (wordIndex == gameWords.count()) { //no correct word guess => new Round
-                    //TODO: new round
+                    createGameWordsArray()
+                    updateUI()
                 } else {
                     animated_textview.text = gameWords[wordIndex].textSpa
                 }
@@ -185,8 +186,8 @@ class GameActivity: AppCompatActivity() {
         if (selectedWord?.textSpa == animated_textview.text) {
             mpRight?.start()
             mpRight?.setOnCompletionListener {
-                if (roundNumber >= 5) {
-                    //TODO: show Ranking
+                if (roundNumber >= 2) {
+                    RankingDialog.show(this, game)
                 } else {
                     createGameWordsArray()
                     updateUI()

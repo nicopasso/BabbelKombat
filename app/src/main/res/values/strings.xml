@@ -5,4 +5,5 @@
   <string name="initial_score">0</string>
   <string name="fight">FIGHT!</string>
   <string name="round_number">Round %1$d</string>
+  <string name="back_to_homepage">Back to Homepage</string>
 </resources>
