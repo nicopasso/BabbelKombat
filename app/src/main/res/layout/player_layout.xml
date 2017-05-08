@@ -29,7 +29,7 @@
     app:layout_constraintTop_toBottomOf="@+id/player_name_textview"
     app:layout_constraintLeft_toLeftOf="parent"
     app:layout_constraintRight_toRightOf="parent"
-    tools:text="@string/initial_score"
+    android:text="@string/initial_score"
     android:textSize="20sp"
     android:textColor="@color/colorAccent"/>
 

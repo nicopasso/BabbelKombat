@@ -136,6 +136,26 @@ class GameActivity: AppCompatActivity() {
         animation.repeatCount = Animation.INFINITE
         animation.interpolator = AccelerateDecelerateInterpolator()
 
+        animation.setAnimationListener(object: Animation.AnimationListener {
+
+            override fun onAnimationStart(animation: Animation?) {
+                animated_textview.visibility = View.VISIBLE
+            }
+
+            override fun onAnimationRepeat(animation: Animation?) {
+                wordIndex++
+                if (wordIndex == gameWords.count()) { //no correct word guess => new Round
+                    //TODO: new round
+                } else {
+                    animated_textview.text = gameWords[wordIndex].textSpa
+                }
+            }
+
+            override fun onAnimationEnd(animation: Animation?) {
+                animated_textview.visibility = View.GONE
+            }
+        })
+
         animated_textview.startAnimation(animation)
 
     }
