@@ -84,6 +84,10 @@ class StartActivity : AppCompatActivity(), StartView {
             index -> players.add(Player(index, "Player $index"))
         }
 
+        //It would be nice to use the PlayersDialog class to let the players insert their names
+        //but I'm running out of time
+        //PlayersDialog.show(this, players.count())
+
         val intent = Intent(this, GameActivity::class.java)
         val parcelablePlayers = Parcels.wrap(players)
         val parcelableWords = Parcels.wrap(mWords)
