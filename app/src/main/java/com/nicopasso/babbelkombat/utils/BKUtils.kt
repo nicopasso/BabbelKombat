@@ -3,7 +3,7 @@ package com.nicopasso.babbelkombat.utils
 import android.content.Context
 import java.io.IOException
 
-class BKUtils {
+open class BKUtils {
 
     companion object {
         val FILE_JSON = "json/words.json"
