@@ -1,15 +1,20 @@
 package com.nicopasso.babbelkombat.ui
 
 import android.content.Context
+import android.content.Intent
 import android.graphics.Typeface
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.view.View
+import android.widget.Button
 import android.widget.TextView
 import com.nicopasso.babbelkombat.BKApplication
 import com.nicopasso.babbelkombat.R
 import com.nicopasso.babbelkombat.di.StartActivityModule
+import com.nicopasso.babbelkombat.model.Player
 import com.nicopasso.babbelkombat.model.Word
 import kotlinx.android.synthetic.main.activity_start.*
+import org.parceler.Parcels
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
 import javax.inject.Inject
@@ -58,6 +63,11 @@ class StartActivity : AppCompatActivity(), StartView {
                 .subscribe {
                     word -> mWords.add(word)
                 }
+
+        one_player_btn.setOnClickListener { v -> buttonClicked(v)}
+        two_players_btn.setOnClickListener { v -> buttonClicked(v)}
+        three_players_btn.setOnClickListener { v -> buttonClicked(v)}
+        four_players_btn.setOnClickListener { v -> buttonClicked(v)}
     }
 
     override fun onDestroy() {
@@ -65,4 +75,21 @@ class StartActivity : AppCompatActivity(), StartView {
         presenter.detachView()
     }
     //endregion
+
+    fun buttonClicked(view: View) {
+        val numberOfPlayers = (view as Button).text.toString().toInt()
+        val players = mutableListOf<Player>()
+
+        (1..numberOfPlayers).map {
+            index -> players.add(Player(index, "Player $index"))
+        }
+
+        val intent = Intent(this, GameActivity::class.java)
+        val parcelablePlayers = Parcels.wrap(players)
+        val parcelableWords = Parcels.wrap(mWords)
+        intent.putExtra("players", parcelablePlayers)
+        intent.putExtra("words", parcelableWords)
+        startActivity(intent)
+
+    }
 }
