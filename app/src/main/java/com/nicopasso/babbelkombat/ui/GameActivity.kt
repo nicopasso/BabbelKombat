@@ -3,6 +3,9 @@ package com.nicopasso.babbelkombat.ui
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
+import android.view.animation.AccelerateDecelerateInterpolator
+import android.view.animation.Animation
+import android.view.animation.TranslateAnimation
 import com.nicopasso.babbelkombat.R
 import com.nicopasso.babbelkombat.model.Game
 import com.nicopasso.babbelkombat.model.Player
@@ -42,6 +45,7 @@ class GameActivity: AppCompatActivity() {
         game.players = players
 
         createGameWordsArray()
+        initUI()
     }
 
     fun createGameWordsArray() {
@@ -63,7 +67,7 @@ class GameActivity: AppCompatActivity() {
             //Add the selected word few times more in the game words array
             val step = BKUtils().generateRandomNumber(5, 1)
             for (i in 4..GAME_WORDS_COUNT step step) {
-                gameWords.add(it)
+                gameWords.add(i, it)
             }
         }
     }
@@ -79,7 +83,7 @@ class GameActivity: AppCompatActivity() {
             setOnClickListener {
                 round_container_layout.visibility = View.GONE
                 words_container_layout.visibility = View.VISIBLE
-                //TODO: start the game here
+                startGame()
             }
         }
 
@@ -107,9 +111,33 @@ class GameActivity: AppCompatActivity() {
                 player_two.player_name_textview.text = players[1].name
                 player_three.player_name_textview.text = players[2].name
             }
+            4 -> {
+                player_one.player_name_textview.text = players[0].name
+                player_two.player_name_textview.text = players[1].name
+                player_three.player_name_textview.text = players[2].name
+                player_four.player_name_textview.text = players[3].name
+            }
         }
 
     }
 
+    fun startGame() {
+
+        var wordIndex = 0
+
+        animated_textview.text = gameWords[wordIndex].textEng
+
+        val animation = TranslateAnimation(Animation.RELATIVE_TO_PARENT, -1.5f,
+                Animation.RELATIVE_TO_PARENT, 1f,
+                Animation.RELATIVE_TO_PARENT, 0f,
+                Animation.RELATIVE_TO_PARENT, 0f)
+        animation.duration = 3500
+        animation.startOffset = 100
+        animation.repeatCount = Animation.INFINITE
+        animation.interpolator = AccelerateDecelerateInterpolator()
+
+        animated_textview.startAnimation(animation)
+
+    }
 
 }
