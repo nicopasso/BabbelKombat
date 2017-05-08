@@ -189,16 +189,40 @@ class GameActivity: AppCompatActivity() {
                     //TODO: show Ranking
                 } else {
                     createGameWordsArray()
-                    //TODO: update UI
+                    updateUI()
                 }
             }
             animation.cancel()
 
-            //TODO: update player score
+            players.filter {
+                button.tag == it.id
+            }.forEach {
+                it.score += 100
+            }
         } else {
             mpWrong?.start()
         }
 
+    }
+
+    fun updateUI() {
+        roundNumber++
+        round_textview.text = resources.getString(R.string.round_number, roundNumber)
+
+        word_to_guess_textview.text = selectedWord?.textEng
+
+        round_container_layout.visibility = View.VISIBLE
+        words_container_layout.visibility = View.GONE
+
+        for (player in players) {
+            when(player.id) {
+                1 -> player_one.player_score_textview.text = player.score.toString()
+                2 -> player_two.player_score_textview.text = player.score.toString()
+                3 -> player_three.player_score_textview.text = player.score.toString()
+                4 -> player_four.player_score_textview.text = player.score.toString()
+            }
+
+        }
     }
 
 }
