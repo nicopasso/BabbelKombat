@@ -1,3 +1,5 @@
 <resources>
   <string name="app_name">BabbelKombat</string>
+  <string name="title">Babbel Kombat</string>
+  <string name="number_of_players">Number of players</string>
 </resources>
