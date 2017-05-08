@@ -4,4 +4,5 @@
   <string name="number_of_players">Number of players</string>
   <string name="initial_score">0</string>
   <string name="fight">FIGHT!</string>
+  <string name="round_number">Round %1$d</string>
 </resources>
