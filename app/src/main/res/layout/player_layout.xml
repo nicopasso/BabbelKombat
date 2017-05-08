@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="wrap_content"
+  android:layout_height="match_parent" xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_margin="8dp">
+
+  <Button android:layout_width="60dp" android:layout_height="60dp"
+    android:background="@drawable/arcade_red_half"
+    android:id="@+id/arcade_btn"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintLeft_toLeftOf="parent"
+    app:layout_constraintRight_toRightOf="parent"/>
+
+  <com.nicopasso.babbelkombat.customviews.BKTextView android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/player_name_textview"
+    app:layout_constraintTop_toBottomOf="@+id/arcade_btn"
+    app:layout_constraintLeft_toLeftOf="parent"
+    app:layout_constraintRight_toRightOf="parent"
+    tools:text="Niccolò"
+    android:textSize="20sp"
+    android:textColor="@color/colorAccent"/>
+
+  <com.nicopasso.babbelkombat.customviews.BKTextView android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/player_score_textview"
+    app:layout_constraintTop_toBottomOf="@+id/player_name_textview"
+    app:layout_constraintLeft_toLeftOf="parent"
+    app:layout_constraintRight_toRightOf="parent"
+    tools:text="@string/initial_score"
+    android:textSize="20sp"
+    android:textColor="@color/colorAccent"/>
+
+</android.support.constraint.ConstraintLayout>

@@ -2,4 +2,6 @@
   <string name="app_name">BabbelKombat</string>
   <string name="title">Babbel Kombat</string>
   <string name="number_of_players">Number of players</string>
+  <string name="initial_score">0</string>
+  <string name="fight">FIGHT!</string>
 </resources>
